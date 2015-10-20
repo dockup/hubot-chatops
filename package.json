@@ -1,6 +1,6 @@
 {
   "name": "hubot-chatops",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Hubot plugin for devops",
   "main": "index.coffee",
   "author": "Emil Soman",

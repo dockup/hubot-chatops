@@ -20,12 +20,17 @@ module.exports = (robot) ->
   # a friendly message is posted to chat with this log URL.
   deploy = (repoName, branchName, res) ->
     room = if robot.adapterName == 'hipchat' then res.message.user.reply_to else res.message.room
+    repo = "https://github.com/#{repoName}.git"
 
-    if (repoName.match(/.*[:\/](.*)\/(.*).git/)){
+    pattern = ///.*
+      [:\/]
+      (.*)
+      \/
+      (.*)
+      .git
+
+    if repoName.match pattern
       repo = repoName
-    } else {
-      repo = "https://github.com/#{repoName}.git"
-    }
 
     data = JSON.stringify({
       repository: repo,
@@ -48,6 +53,16 @@ module.exports = (robot) ->
   destroy = (repoName, branchName, res) ->
     room = if robot.adapterName == 'hipchat' then res.message.user.reply_to else res.message.room
     repo = "https://github.com/#{repoName}.git"
+
+    pattern = ///.*
+      [:\/]
+      (.*)
+      \/
+      (.*)
+      .git
+
+    if repoName.match pattern
+      repo = repoName
 
     data = JSON.stringify({
       repository: repo,

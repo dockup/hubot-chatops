@@ -9,7 +9,14 @@
     "hubot": "2.x"
   },
   "devDependencies": {
-    "coffee-script": "1.x"
+    "coffee-script": "^1.10.0",
+    "hubot-mock-adapter": "~1.0.0",
+    "jasmine": "^2.3.2",
+    "mock-hubot": "^1.0.6",
+    "nock": "^7.7.2"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/jasmine"
   },
   "repository": {
     "type": "git",

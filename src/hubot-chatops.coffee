@@ -20,7 +20,7 @@ module.exports = (robot) ->
   # a friendly message is posted to chat with this log URL.
   deploy = (repoName, branchName, res) ->
     room = if robot.adapterName == 'hipchat' then res.message.user.reply_to else res.message.room
-    repo = repo(reponame)
+    repo = repo(repoName)
 
     data = JSON.stringify({
       repository: repo,
@@ -42,7 +42,7 @@ module.exports = (robot) ->
   # the environment for a given github repo and branchname
   destroy = (repoName, branchName, res) ->
     room = if robot.adapterName == 'hipchat' then res.message.user.reply_to else res.message.room
-    repo = repo(reponame)
+    repo = repo(repoName)
 
     data = JSON.stringify({
       repository: repo,

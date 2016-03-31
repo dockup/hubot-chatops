@@ -22,14 +22,7 @@ module.exports = (robot) ->
     room = if robot.adapterName == 'hipchat' then res.message.user.reply_to else res.message.room
     repo = "https://github.com/#{repoName}.git"
 
-    pattern = ///.*
-      [:\/]
-      (.*)
-      \/
-      (.*)
-      .git
-
-    if repoName.match pattern
+    if repoName.match /.*[:\/](.*)\/(.*).git/
       repo = repoName
 
     data = JSON.stringify({
@@ -54,14 +47,7 @@ module.exports = (robot) ->
     room = if robot.adapterName == 'hipchat' then res.message.user.reply_to else res.message.room
     repo = "https://github.com/#{repoName}.git"
 
-    pattern = ///.*
-      [:\/]
-      (.*)
-      \/
-      (.*)
-      .git
-
-    if repoName.match pattern
+    if repoName.match /.*[:\/](.*)\/(.*).git/
       repo = repoName
 
     data = JSON.stringify({

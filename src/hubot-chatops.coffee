@@ -13,6 +13,9 @@ module.exports = (robot) ->
   chatops_deployer_url = process.env.DEPLOYER_URL
   hubot_url = process.env.HUBOT_URL
 
+  repo = (repoName) ->
+    if (repoName.match(/.*[:\/](.*)\/(.*).git/)) then repoName else "https://github.com/#{repoName}.git"
+
   # Function that sends API request to chatops_deployer to deploy
   # a github repository and a branchname. It provides a callback_url
   # to be triggered once deployment is ready.
@@ -85,6 +88,3 @@ module.exports = (robot) ->
         robot.messageRoom room, "Could not destroy environment for `#{branch}`"
 
     res.send 'OK'
-
-  repo = (repoName) ->
-    if (repoName.match(/.*[:\/](.*)\/(.*).git/)) then repoName else "https://github.com/#{repoName}.git"

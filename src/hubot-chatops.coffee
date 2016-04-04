@@ -13,7 +13,7 @@ module.exports = (robot) ->
   chatops_deployer_url = process.env.DEPLOYER_URL
   hubot_url = process.env.HUBOT_URL
 
-  repo = (repoName) ->
+  getrepo = (repoName) ->
     if (repoName.match(/.*[:\/](.*)\/(.*).git/)) then repoName else "https://github.com/#{repoName}.git"
 
   # Function that sends API request to chatops_deployer to deploy
@@ -23,7 +23,7 @@ module.exports = (robot) ->
   # a friendly message is posted to chat with this log URL.
   deploy = (repoName, branchName, res) ->
     room = if robot.adapterName == 'hipchat' then res.message.user.reply_to else res.message.room
-    repo = repo(repoName)
+    repo = getrepo(repoName)
 
     data = JSON.stringify({
       repository: repo,
@@ -45,7 +45,7 @@ module.exports = (robot) ->
   # the environment for a given github repo and branchname
   destroy = (repoName, branchName, res) ->
     room = if robot.adapterName == 'hipchat' then res.message.user.reply_to else res.message.room
-    repo = repo(repoName)
+    repo = getrepo(repoName)
 
     data = JSON.stringify({
       repository: repo,
